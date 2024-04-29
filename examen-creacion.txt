@@ -1,0 +1,460 @@
+MySQL Shell 8.0.36
+
+Copyright (c) 2016, 2023, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \c --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': *********
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): N
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 19
+Server version: 8.0.36 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > create database hospital;
+Query OK, 1 row affected (0.1783 sec)
+ MySQL  localhost:3306 ssl  SQL > CREATE TABLE pacientes (
+                               ->   paciente_id INT PRIMARY KEY AUTO_INCREMENT,
+                               ->   nombre VARCHAR(255) NOT NULL,
+                               ->   apellido_pat VARCHAR(255) NOT NULL,
+                               ->   apellido_mat VARCHAR(255) NOT NULL,
+                               ->   fecha_nacimiento DATE NOT NULL,
+                               ->   peso DECIMAL(10,2) NOT NULL,
+                               ->   altura DECIMAL(10,2) NOT NULL,
+                               ->   numero_seguro_social VARCHAR(255) NOT NULL,
+                               ->   genero ENUM('masculino', 'femenino') NOT NULL,
+                               ->   telefono_casa VARCHAR(255),
+                               ->   telefono_trabajo VARCHAR(255),
+                               ->   telefono_movil VARCHAR(255),
+                               ->   otros TEXT
+                               -> );
+ERROR: 1046 (3D000): No database selected
+ MySQL  localhost:3306 ssl  SQL > use hospital;
+Default schema set to `hospital`.
+Fetching global names, object names from `hospital` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE pacientes (   paciente_id INT PRIMARY KEY AUTO_INCREMENT,   nombre VARCHAR(255) NOT NULL,   apellido_pat VARCHAR(255) NOT NULL,   apellido_mat VARCHAR(255) NOT NULL,   fecha_nacimiento DATE NOT NULL,   peso DECIMAL(10,2) NOT NULL,   altura DECIMAL(10,2) NOT NULL,   numero_seguro_social VARCHAR(255) NOT NULL,   genero ENUM('masculino', 'femenino') NOT NULL,   telefono_casa VARCHAR(255),   telefono_trabajo VARCHAR(255),   telefono_movil VARCHAR(255),   otros TEXT );
+Query OK, 0 rows affected (0.8273 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > desc pacientes;
++----------------------+------------------------------+------+-----+---------+----------------+
+| Field                | Type                         | Null | Key | Default | Extra          |
++----------------------+------------------------------+------+-----+---------+----------------+
+| paciente_id          | int                          | NO   | PRI | NULL    | auto_increment |
+| nombre               | varchar(255)                 | NO   |     | NULL    |                |
+| apellido_pat         | varchar(255)                 | NO   |     | NULL    |                |
+| apellido_mat         | varchar(255)                 | NO   |     | NULL    |                |
+| fecha_nacimiento     | date                         | NO   |     | NULL    |                |
+| peso                 | decimal(10,2)                | NO   |     | NULL    |                |
+| altura               | decimal(10,2)                | NO   |     | NULL    |                |
+| numero_seguro_social | varchar(255)                 | NO   |     | NULL    |                |
+| genero               | enum('masculino','femenino') | NO   |     | NULL    |                |
+| telefono_casa        | varchar(255)                 | YES  |     | NULL    |                |
+| telefono_trabajo     | varchar(255)                 | YES  |     | NULL    |                |
+| telefono_movil       | varchar(255)                 | YES  |     | NULL    |                |
+| otros                | text                         | YES  |     | NULL    |                |
++----------------------+------------------------------+------+-----+---------+----------------+
+13 rows in set (0.0656 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE cuartos (
+                                         ->   cuarto_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   paciente_id INT NOT NULL,
+                                         ->   numero_cuarto INT NOT NULL,
+                                         ->   inicio_estadia DATE NOT NULL,
+                                         ->   fin_estadia DATE,
+                                         ->   CONSTRAINT fk_cuartos_pacientes FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE CASCADE
+                                         -> );
+Query OK, 0 rows affected (1.1941 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_pacientes (
+                                         ->   direccion_paciente_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   paciente_id INT NOT NULL,
+                                         ->   direccion_id INT NOT NULL,
+                                         ->   CONSTRAINT fk_direcciones_pacientes_pacientes FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE CASCADE,
+                                         ->   CONSTRAINT fk_direcciones_pacientes_direcciones FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE CASCADE
+                                         -> );
+ERROR: 1824 (HY000): Failed to open the referenced table 'direcciones'
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones (
+                                         ->   direccion_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   calle VARCHAR(255) NOT NULL,
+                                         ->   numero_exterior INT NOT NULL,
+                                         ->   numero_interior INT,
+                                         ->   colonia VARCHAR(255) NOT NULL,
+                                         ->   codigo_postal VARCHAR(255) NOT NULL,
+                                         ->   ciudad VARCHAR(255) NOT NULL,
+                                         ->   estado VARCHAR(255) NOT NULL,
+                                         ->   pais VARCHAR(255) NOT NULL,
+                                         ->   otros TEXT
+                                         -> );
+Query OK, 0 rows affected (2.0104 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_pacientes (   direccion_paciente_id INT PRIMARY KEY AUTO_INCREMENT,   paciente_id INT NOT NULL,   direccion_id INT NOT NULL,   CONSTRAINT fk_direcciones_pacientes_pacientes FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id)   ON DELETE RESTRICT   ON UPDATE CASCADE,   CONSTRAINT fk_direcciones_pacientes_direcciones FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id)   ON DELETE RESTRICT   ON UPDATE CASCADE );
+Query OK, 0 rows affected (1.1086 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > desc cuartos;
++----------------+------+------+-----+---------+----------------+
+| Field          | Type | Null | Key | Default | Extra          |
++----------------+------+------+-----+---------+----------------+
+| cuarto_id      | int  | NO   | PRI | NULL    | auto_increment |
+| paciente_id    | int  | NO   | MUL | NULL    |                |
+| numero_cuarto  | int  | NO   |     | NULL    |                |
+| inicio_estadia | date | NO   |     | NULL    |                |
+| fin_estadia    | date | YES  |     | NULL    |                |
++----------------+------+------+-----+---------+----------------+
+5 rows in set (0.0039 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > desc direcciones;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| direccion_id    | int          | NO   | PRI | NULL    | auto_increment |
+| calle           | varchar(255) | NO   |     | NULL    |                |
+| numero_exterior | int          | NO   |     | NULL    |                |
+| numero_interior | int          | YES  |     | NULL    |                |
+| colonia         | varchar(255) | NO   |     | NULL    |                |
+| codigo_postal   | varchar(255) | NO   |     | NULL    |                |
+| ciudad          | varchar(255) | NO   |     | NULL    |                |
+| estado          | varchar(255) | NO   |     | NULL    |                |
+| pais            | varchar(255) | NO   |     | NULL    |                |
+| otros           | text         | YES  |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+10 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > desc direcciones_pacientes;
++-----------------------+------+------+-----+---------+----------------+
+| Field                 | Type | Null | Key | Default | Extra          |
++-----------------------+------+------+-----+---------+----------------+
+| direccion_paciente_id | int  | NO   | PRI | NULL    | auto_increment |
+| paciente_id           | int  | NO   | MUL | NULL    |                |
+| direccion_id          | int  | NO   | MUL | NULL    |                |
++-----------------------+------+------+-----+---------+----------------+
+3 rows in set (0.0034 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > drop table direcciones;
+ERROR: 3730 (HY000): Cannot drop table 'direcciones' referenced by a foreign key constraint 'fk_direcciones_pacientes_direcciones' on table 'direcciones_pacientes'.
+ MySQL  localhost:3306 ssl  hospital  SQL > alter table direcciones modify column otros text not null;
+Query OK, 0 rows affected (1.8632 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  hospital  SQL > desc direcciones;
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| direccion_id    | int          | NO   | PRI | NULL    | auto_increment |
+| calle           | varchar(255) | NO   |     | NULL    |                |
+| numero_exterior | int          | NO   |     | NULL    |                |
+| numero_interior | int          | YES  |     | NULL    |                |
+| colonia         | varchar(255) | NO   |     | NULL    |                |
+| codigo_postal   | varchar(255) | NO   |     | NULL    |                |
+| ciudad          | varchar(255) | NO   |     | NULL    |                |
+| estado          | varchar(255) | NO   |     | NULL    |                |
+| pais            | varchar(255) | NO   |     | NULL    |                |
+| otros           | text         | NO   |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
+10 rows in set (0.0033 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE empleados(   empleado_id INT PRIMARY KEY AUTO_INCREMENT,   nombre VARCHAR(255) NOT NULL,   apellido_paterno VARCHAR(255) NOT NULL,   apellido_materno VARCHAR(255) NOT NULL,   titulo VARCHAR(255) NOT NULL,   fecha_nacimiento DATE NOT NULL,   otros text  );
+Query OK, 0 rows affected (0.8218 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > desc empleados
+                                         -> ;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+|  empleado_id      | int          | NO   | PRI | NULL    | auto_increment |
+|  nombre           | varchar(255) | NO   |     | NULL    |                |
+|  apellido_paterno | varchar(255) | NO   |     | NULL    |                |
+|  apellido_materno | varchar(255) | NO   |     | NULL    |                |
+|  titulo           | varchar(255) | NO   |     | NULL    |                |
+|  fecha_nacimiento | date         | NO   |     | NULL    |                |
+|  otros            | text         | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.0031 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_empleados (
+                                         ->   direccion_empleados_id INT PRIMARY KEY,
+                                         ->   empleado_id INT,
+                                         ->   direccion_id INT,
+                                         ->   FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+                                         ->   FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id) ON DELETE CASCADE ON UPDATE CASCADE
+                                         -> );
+ERROR: 3734 (HY000): Failed to add the foreign key constraint. Missing column 'empleado_id' for constraint 'direcciones_empleados_ibfk_1' in the referenced table 'empleados'
+ MySQL  localhost:3306 ssl  hospital  SQL > desc empleados;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+|  empleado_id      | int          | NO   | PRI | NULL    | auto_increment |
+|  nombre           | varchar(255) | NO   |     | NULL    |                |
+|  apellido_paterno | varchar(255) | NO   |     | NULL    |                |
+|  apellido_materno | varchar(255) | NO   |     | NULL    |                |
+|  titulo           | varchar(255) | NO   |     | NULL    |                |
+|  fecha_nacimiento | date         | NO   |     | NULL    |                |
+|  otros            | text         | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.0029 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > show create table empleados;
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table
+
+
+                              |
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| empleados | CREATE TABLE `empleados` (
+  ` empleado_id` int NOT NULL AUTO_INCREMENT,
+  ` nombre` varchar(255) NOT NULL,
+  ` apellido_paterno` varchar(255) NOT NULL,
+  ` apellido_materno` varchar(255) NOT NULL,
+  ` titulo` varchar(255) NOT NULL,
+  ` fecha_nacimiento` date NOT NULL,
+  ` otros` text,
+  PRIMARY KEY (` empleado_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.2870 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_empleados (   direccion_empleados_id INT PRIMARY KEY,   empleado_id INT,   direccion_id INT,   FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE,   FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id) ON DELETE CASCADE ON UPDATE CCREATE TABLE direcciones_empleados (ASCADE );
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CCREATE TABLE direcciones_empleados (ASCADE )' at line 1
+ MySQL  localhost:3306 ssl  hospital  SQL >   direccion_empleados_id INT PRIMARY KEY,
+                                         ->   empleado_id INT,
+                                         ->   direccion_id INT,
+                                         ->   CONSTRAINT fk_direcciones_empleado_id FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+                                         ->   CONSTRAINT fk_direcciones_direccion_id FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id) ON DELETE CASCADE ON UPDATE CASCADE
+                                         -> );
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'direccion_empleados_id INT PRIMARY KEY,
+  empleado_id INT,
+  direccion_id INT,
+ ' at line 1
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_empleados (
+                                         ->   direccion_empleados_id INT PRIMARY KEY,
+                                         ->   empleado_id INT,
+                                         ->   direccion_id INT,
+                                         ->   CONSTRAINT fk_direcciones_empleado_id FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE,
+                                         ->   CONSTRAINT fk_direcciones_direccion_id FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id) ON DELETE CASCADE ON UPDATE CASCADE
+                                         -> );
+ERROR: 3734 (HY000): Failed to add the foreign key constraint. Missing column 'empleado_id' for constraint 'fk_direcciones_empleado_id' in the referenced table 'empleados'
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_empleados (   direccion_empleados_id INT PRIMARY KEY,   empleado_id INT not null,   direccion_id INT not null,   CONSTRAINT fk_direcciones_empleado_id FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE,   CONSTRAINT fk_direcciones_direccion_id FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id) ON DELETE CASCADE ON UPDATE CASCADE );
+ERROR: 3734 (HY000): Failed to add the foreign key constraint. Missing column 'empleado_id' for constraint 'fk_direcciones_empleado_id' in the referenced table 'empleados'
+ MySQL  localhost:3306 ssl  hospital  SQL > desc empleados;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+|  empleado_id      | int          | NO   | PRI | NULL    | auto_increment |
+|  nombre           | varchar(255) | NO   |     | NULL    |                |
+|  apellido_paterno | varchar(255) | NO   |     | NULL    |                |
+|  apellido_materno | varchar(255) | NO   |     | NULL    |                |
+|  titulo           | varchar(255) | NO   |     | NULL    |                |
+|  fecha_nacimiento | date         | NO   |     | NULL    |                |
+|  otros            | text         | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_empleados (   direccion_empleados_id INT PRIMARY KEY,   empleado_id INT not null,   direccion_id INT not null,   CONSTRAINT fk_direcciones_empleado_id FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id) ON DELETE RESTRICT ON UPDATE CASCADE,   CONSTRAINT fk_direcciones_direccion_id FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id) ON DELETE CASCADE ON UPDATE CASCADE );
+ERROR: 3734 (HY000): Failed to add the foreign key constraint. Missing column 'empleado_id' for constraint 'fk_direcciones_empleado_id' in the referenced table 'empleados'
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_empleados (
+                                         ->   direccion_empleados_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   empleado_id INT NOT NULL,
+                                         ->   direccion_id INT NOT NULL,
+                                         ->   CONSTRAINT fk_direcciones_empleados_empleados FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE CASCADE,
+                                         ->   CONSTRAINT fk_direcciones_empleados_direcciones FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE CASCADE
+                                         -> );
+ERROR: 3734 (HY000): Failed to add the foreign key constraint. Missing column 'empleado_id' for constraint 'fk_direcciones_empleados_empleados' in the referenced table 'empleados'
+ MySQL  localhost:3306 ssl  hospital  SQL > desc empleados;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+|  empleado_id      | int          | NO   | PRI | NULL    | auto_increment |
+|  nombre           | varchar(255) | NO   |     | NULL    |                |
+|  apellido_paterno | varchar(255) | NO   |     | NULL    |                |
+|  apellido_materno | varchar(255) | NO   |     | NULL    |                |
+|  titulo           | varchar(255) | NO   |     | NULL    |                |
+|  fecha_nacimiento | date         | NO   |     | NULL    |                |
+|  otros            | text         | YES  |     | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > ALTER TABLE empleados
+                                         -> ADD empleado_id INT PRIMARY KEY AUTO_INCREMENT;
+ERROR: 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+ MySQL  localhost:3306 ssl  hospital  SQL > show create table pacientes;
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table
+
+
+
+
+                                                      |
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| pacientes | CREATE TABLE `pacientes` (
+  `paciente_id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `apellido_pat` varchar(255) NOT NULL,
+  `apellido_mat` varchar(255) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `peso` decimal(10,2) NOT NULL,
+  `altura` decimal(10,2) NOT NULL,
+  `numero_seguro_social` varchar(255) NOT NULL,
+  `genero` enum('masculino','femenino') NOT NULL,
+  `telefono_casa` varchar(255) DEFAULT NULL,
+  `telefono_trabajo` varchar(255) DEFAULT NULL,
+  `telefono_movil` varchar(255) DEFAULT NULL,
+  `otros` text,
+  PRIMARY KEY (`paciente_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0034 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > show create table empleados;
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table
+
+
+                              |
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| empleados | CREATE TABLE `empleados` (
+  ` empleado_id` int NOT NULL AUTO_INCREMENT,
+  ` nombre` varchar(255) NOT NULL,
+  ` apellido_paterno` varchar(255) NOT NULL,
+  ` apellido_materno` varchar(255) NOT NULL,
+  ` titulo` varchar(255) NOT NULL,
+  ` fecha_nacimiento` date NOT NULL,
+  ` otros` text,
+  PRIMARY KEY (` empleado_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > alter table empleados rename column  empleado_id to empleado_id;
+ERROR: 1054 (42S22): Unknown column 'empleado_id' in 'empleados'
+ MySQL  localhost:3306 ssl  hospital  SQL > alter table empleados rename column  ' empleado_id' to 'empleado_id';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' empleado_id' to 'empleado_id'' at line 1
+ MySQL  localhost:3306 ssl  hospital  SQL > drop table empleados;
+Query OK, 0 rows affected (1.7202 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE empleados(
+                                         ->   empleado_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   nombre VARCHAR(255) NOT NULL,
+                                         ->   apellido_paterno VARCHAR(255) NOT NULL,
+                                         ->   apellido_materno VARCHAR(255) NOT NULL,
+                                         ->   titulo VARCHAR(255) NOT NULL,
+                                         ->   fecha_nacimiento DATE NOT NULL,
+                                         ->   otros VARCHAR(255)
+                                         -> );
+Query OK, 0 rows affected (0.5735 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > show create table empleados;
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table
+
+
+                                                    |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| empleados | CREATE TABLE `empleados` (
+  `empleado_id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `apellido_paterno` varchar(255) NOT NULL,
+  `apellido_materno` varchar(255) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `otros` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`empleado_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.0037 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE direcciones_empleados (   direccion_empleados_id INT PRIMARY KEY AUTO_INCREMENT,   empleado_id INT NOT NULL,   direccion_id INT NOT NULL,   CONSTRAINT fk_direcciones_empleados_empleados FOREIGN KEY (empleado_id) REFERENCES empleados(empleado_id)   ON DELETE RESTRICT   ON UPDATE CASCADE,   CONSTRAINT fk_direcciones_empleados_direcciones FOREIGN KEY (direccion_id) REFERENCES direcciones(direccion_id)   ON DELETE RESTRICT   ON UPDATE CASCADE );
+Query OK, 0 rows affected (1.2336 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > desc direcciones_empleados;
++------------------------+------+------+-----+---------+----------------+
+| Field                  | Type | Null | Key | Default | Extra          |
++------------------------+------+------+-----+---------+----------------+
+| direccion_empleados_id | int  | NO   | PRI | NULL    | auto_increment |
+| empleado_id            | int  | NO   | MUL | NULL    |                |
+| direccion_id           | int  | NO   | MUL | NULL    |                |
++------------------------+------+------+-----+---------+----------------+
+3 rows in set (0.0038 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE formas_pago (
+                                         ->   forma_pago_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   forma_pago TEXT NOT NULL
+                                         -> );
+Query OK, 0 rows affected (0.6884 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE formas_pago_pacientes (
+                                         ->   forma_pago_pac_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   paciente_id INT NOT NULL,
+                                         ->   forma_pago_id INT NOT NULL,
+                                         ->   detalles TEXT,
+                                         ->   CONSTRAINT fk_formas_pago_pacientes_pacientes FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE CASCADE,
+                                         ->   CONSTRAINT fk_formas_pago_pacientes_formas_pago FOREIGN KEY (forma_pago_id) REFERENCES formas_pago(forma_pago_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE CASCADE
+                                         -> );
+Query OK, 0 rows affected (0.9723 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE cuentas_pacientes (
+                                         ->   cuentas_pacientes_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   paciente_id INT NOT NULL,
+                                         ->   forma_pago_pac_id INT NOT NULL,
+                                         ->   fecha_emision DATE NOT NULL,
+                                         ->   otros TEXT,
+                                         ->   CONSTRAINT fk_cuentas_pacientes_pacientes FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id)
+                                         ->   ON DELETE CASCADE
+                                         ->   ON UPDATE RESTRICT,
+                                         ->   CONSTRAINT fk_cuentas_pacientes_formas_pago_pacientes FOREIGN KEY (forma_pago_pac_id) REFERENCES formas_pago_pacientes(forma_pago_pac_id)
+                                         ->   ON DELETE CASCADE
+                                         ->   ON UPDATE RESTRICT
+                                         -> );
+Query OK, 0 rows affected (2.9546 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE cuentas_pacientes_detalles (
+                                         ->   cuentas_pacientes_det_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   cuentas_pacientes_id INT NOT NULL,
+                                         ->   detalle TEXT DEFAULT 'Diagnóstico',
+                                         ->   cantidad DOUBLE NOT NULL,
+                                         ->   costo_total DOUBLE NOT NULL,
+                                         ->   CONSTRAINT fk_cuentas_pacientes_detalles_cuentas_pacientes FOREIGN KEY (cuentas_pacientes_id) REFERENCES cuentas_pacientes(cuentas_pacientes_id)
+                                         ->   ON DELETE CASCADE
+                                         ->   ON UPDATE RESTRICT
+                                         -> );
+ERROR: 1101 (42000): BLOB, TEXT, GEOMETRY or JSON column 'detalle' can't have a default value
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE cuentas_pacientes_detalles (   cuentas_pacientes_det_id INT PRIMARY KEY AUTO_INCREMENT,   cuentas_pacientes_id INT NOT NULL,   detalle varchar(255) DEFAULT 'Diagnóstico',   cantidad DOUBLE NOT NULL,   costo_total DOUBLE NOT NULL,   CONSTRAINT fk_cuentas_pacientes_detalles_cuentas_pacientes FOREIGN KEY (cuentas_pacientes_id) REFERENCES cuentas_pacientes(cuentas_pacientes_id)   ON DELETE CASCADE   ON UPDATE RESTRICT );
+Query OK, 0 rows affected (1.2224 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE registro_pacientes (
+                                         ->   registro_paciente_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   paciente_id INT NOT NULL,
+                                         ->   cuentas_pacientes_id INT NOT NULL,
+                                         ->   registro_por_empleado_id INT NOT NULL,
+                                         ->   fecha_admision DATE NOT NULL,
+                                         ->   condición_medica TEXT NOT NULL,
+                                         ->   otros TEXT,
+                                         ->   CONSTRAINT fk_registro_pacientes_pacientes FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_
+                                         -> ^C
+ MySQL  localhost:3306 ssl  hospital  SQL > CREATE TABLE registro_pacientes (
+                                         ->   registro_paciente_id INT PRIMARY KEY AUTO_INCREMENT,
+                                         ->   paciente_id INT NOT NULL,
+                                         ->   cuentas_pacientes_id INT NOT NULL,
+                                         ->   registro_por_empleado_id INT NOT NULL,
+                                         ->   fecha_admision DATE NOT NULL,
+                                         ->   condición_medica TEXT NOT NULL,
+                                         ->   otros TEXT,
+                                         ->   CONSTRAINT fk_registro_pacientes_pacientes FOREIGN KEY (paciente_id) REFERENCES pacientes(paciente_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE RESTRICT,
+                                         ->   CONSTRAINT fk_registro_pacientes_cuentas_pacientes FOREIGN KEY (cuentas_pacientes_id) REFERENCES cuentas_pacientes(cuentas_pacientes_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE RESTRICT,
+                                         ->   CONSTRAINT fk_registro_pacientes_empleados FOREIGN KEY (registro_por_empleado_id) REFERENCES empleados(empleado_id)
+                                         ->   ON DELETE RESTRICT
+                                         ->   ON UPDATE RESTRICT
+                                         -> );
+Query OK, 0 rows affected (0.7894 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL > show tables;
++----------------------------+
+| Tables_in_hospital         |
++----------------------------+
+| cuartos                    |
+| cuentas_pacientes          |
+| cuentas_pacientes_detalles |
+| direcciones                |
+| direcciones_empleados      |
+| direcciones_pacientes      |
+| empleados                  |
+| formas_pago                |
+| formas_pago_pacientes      |
+| pacientes                  |
+| registro_pacientes         |
++----------------------------+
+11 rows in set (0.2712 sec)
+ MySQL  localhost:3306 ssl  hospital  SQL >

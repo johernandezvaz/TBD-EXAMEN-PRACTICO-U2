@@ -1,0 +1,31 @@
+empleados_id,nombre,apellido_pat,apellido_mat,titulo,fecha_nacimiento,otros,DIRECCION
+,Alejandro,McAlpine,McAlpine,Senior Engineer,19/9/1953,,Geislweg 14
+,Breannda,Billingsley,Billingsley,Staff,15/10/1961,,Estrada da sade n. 58
+,Tse,Herber,Herber,Senior Engineer,19/10/1962,,"Rua da Panificadora, 12"
+,Anoosh,Peyn,Peyn,Engineer,2/11/1961,,"Alameda dos Canrios, 891"
+,Gino,Leonhardt,Leonhardt,Senior Engineer,6/8/1952,,Taucherstrae 10
+,Udi,Jansch,Jansch,Senior Staff,7/4/1959,,Av. del Libertador 900
+,Satosi,Awdeh,Awdeh,Staff,14/4/1963,,2817 Milton Dr.
+,Kwee,Schusler,Schusler,Senior Engineer,13/11/1952,,Strada Provinciale 124
+,Claudi,Stavenow,Stavenow,Senior Staff,7/1/1953,,"Av. Copacabana, 267"
+,Charlene,Brattka,Brattka,Staff,26/11/1962,,Grenzacherweg 237
+,Margareta,Bierman,Bierman,Assistant Engineer,6/9/1960,,"Gran Va, 1"
+,Reuven,Garigliano,Garigliano,Assistant Engineer,20/8/1955,,Erling Skakkes gate 78
+,Hisao,Lipner,Lipner,Engineer,21/1/1958,,187 Suffolk Ln.
+,Hironoby,Sidou,Sidou,Senior Engineer,15/5/1952,,90 Wadhurst Rd.
+,Shir,McClurg,McClurg,Engineer,23/2/1954,,Vinbltet 34
+,Mokhtar,Bernatsky,Bernatsky,Staff,28/8/1955,,"25, rue Lauriston"
+,Gao,Dolinsky,Dolinsky,Engineer,9/3/1960,,P.O. Box 555
+,Erez,Ritzmann,Ritzmann,Senior Engineer,13/6/1952,,"Boulevard Tirou, 255"
+,Mona,Azuma,Azuma,Senior Staff,18/4/1964,,89 Jefferson Way Suite 2
+,Danel,Mondadori,Mondadori,Engineer,25/12/1959,,55 Grizzly Peak Rd.
+,Kshitij,Gils,Gils,Senior Staff,5/10/1961,,Luisenstr. 48
+,Premal,Baek,Baek,Staff,3/12/1957,,Avda. Azteca 123
+,Zhongwei,Rosen,Rosen,Senior Staff,17/12/1960,,"Av. Ins de Castro, 414"
+,Parviz,Lortz,Lortz,Staff,9/9/1963,,722 DaVinci Blvd.
+,Vishv,Zockler,Zockler,Engineer,23/7/1959,,Smagsloget 45
+,Tuval,Kalloufi,Kalloufi,Senior Engineer,25/5/1960,,"2, rue du Commerce"
+,Kenroku,Malabarba,Malabarba,Staff,7/11/1962,,59 rue de l'Abbaye
+,Somnath,Foote,Foote,Engineer,19/11/1962,,Adenauerallee 900
+,Xinglin,Eugenio,Eugenio,Technique Leader,23/7/1959,,Torikatu 38
+,Jungsoon,Syrzycki,Syrzycki,Engineer,25/2/1954,,"Rua do Mercado, 12"

@@ -1,0 +1,59 @@
+﻿Direccion 1,Direccion 2,cuarto,inicio estadia,fin estadia,fecha admisión,registro por empleado,Condicion médica,Fecha_cuenta,cuenta1,cantidad1,Descripcion1,cuenta2,cantidad2,Descripcion2,FORMA PAGO
+Obere Str. 57,305 - 14th Ave. S. Suite 3B,121,10/04/2017,17/04/2017,08/04/2017,Alejandro,Abdominal Aortic Aneurysm,20/04/2017,"$ 151.347,00",3,Tratamiento,"$ 286.210,00",3,Tratamiento,
+Avda. de la Constitucin 2222,Keskuskatu 45,190,11/04/2017,13/04/2017,09/04/2017,Breannda,Abdominal Cramps (Heat Cramps),17/04/2017,"$ 50.299,00",3,Tratamiento,"$ 370.053,00",2,Tratamiento,
+Mataderos  2312,ul. Filtrowa 68,108,12/04/2017,17/04/2017,10/04/2017,Tse,Abdominal Hernia (Hernia Overview),20/04/2017,"$ 335.363,00",2,Tratamiento,"$ 468.092,00",2,Tratamiento,EFECTIVO
+120 Hanover Sq.,,179,13/04/2017,18/04/2017,12/04/2017,Anoosh,"Bacterial Vaginosis (Causes, Symptoms, Treatment)",22/04/2017,"$ 336.904,00",3,Tratamiento,"$ 526.929,00",3,Tratamiento,TARJETA CRÉDITO
+Berguvsvgen  8,,158,14/04/2017,17/04/2017,12/04/2017,Gino,Bad Breath,21/04/2017,"$ 284.730,00",1,Tratamiento,"$ 550.774,00",1,Tratamiento,TARJETA DEBITO
+Forsterstr. 57,,183,15/04/2017,16/04/2017,14/04/2017,Udi,Bad Cholesterol Test (Cholesterol Test),18/04/2017,"$ 692.302,00",1,Tratamiento,"$ 152.954,00",3,Tratamiento,SEGURO
+"24, place Klber",,142,16/04/2017,23/04/2017,15/04/2017,Satosi,Baker Cyst,24/04/2017,"$ 191.741,00",1,Tratamiento,"$ 361.733,00",2,Tratamiento,CHEQUE
+"C/ Araquil, 67",,108,17/04/2017,24/04/2017,15/04/2017,Kwee,"Farting (Intestinal Gas (Belching, Bloating, Flatulence))",27/04/2017,"$ 744.675,00",1,Tratamiento,"$ 554.900,00",2,Tratamiento,EFECTIVO
+"12, rue des Bouchers",,100,18/04/2017,23/04/2017,16/04/2017,Claudi,Fast Heart Beat (Palpitations Overview),28/04/2017,"$ 859.558,00",1,Tratamiento,"$ 285.060,00",1,Tratamiento,TARJETA CRÉDITO
+23 Tsawassen Blvd.,,109,19/04/2017,24/04/2017,17/04/2017,Charlene,Fatigue,27/04/2017,"$ 507.315,00",1,Tratamiento,"$ 525.974,00",1,Tratamiento,TARJETA DEBITO
+Fauntleroy Circus,,116,20/04/2017,23/04/2017,18/04/2017,Margareta,Fatigue From Cancer (Cancer Fatigue,28/04/2017,"$ 189.576,00",2,Tratamiento,"$ 585.548,00",3,Tratamiento,SEGURO
+Cerrito 333,,182,21/04/2017,24/04/2017,19/04/2017,Reuven,Lambliasis (Giardia Lamblia),28/04/2017,"$ 615.740,00",3,Tratamiento,"$ 50.663,00",2,Tratamiento,CHEQUE
+Sierras de Granada 9993,,180,22/04/2017,28/04/2017,20/04/2017,Hisao,Lambliosis (Giardia Lamblia),29/04/2017,"$ 251.751,00",2,Tratamiento,"$ 275.709,00",2,Tratamiento,
+Hauptstr. 29,,188,23/04/2017,25/04/2017,22/04/2017,Hironoby,Landau-Kleffner Syndrome,26/04/2017,"$ 289.314,00",3,Tratamiento,"$ 239.682,00",3,Tratamiento,
+"Av. dos Lusadas, 23",,173,24/04/2017,01/05/2017,22/04/2017,Shir,Lap Band Surgery (Gastric Banding),05/05/2017,"$ 346.244,00",2,Tratamiento,"$ 563.209,00",1,Tratamiento,
+Berkeley Gardens 12  Brewery,,176,25/04/2017,30/04/2017,24/04/2017,Mokhtar,Laparoscopic Liver Biopsy (Liver Biopsy),02/05/2017,"$ 321.521,00",1,Tratamiento,"$ 234.213,00",2,Tratamiento,
+Walserweg 21,,122,26/04/2017,27/04/2017,24/04/2017,Gao,Omega-3 Fatty Acids,01/05/2017,"$ 729.192,00",3,Tratamiento,"$ 589.304,00",1,Tratamiento,EFECTIVO
+"67, rue des Cinquante Otages",,155,27/04/2017,07/05/2017,25/04/2017,Erez,Onchocerciasis,12/05/2017,"$ 654.777,00",2,Tratamiento,"$ 248.645,00",3,Tratamiento,TARJETA CRÉDITO
+35 King George,,181,28/04/2017,30/04/2017,27/04/2017,Mona,Onychocryptosis (Ingrown Toenail),03/05/2017,"$ 141.906,00",2,Tratamiento,"$ 443.071,00",1,Tratamiento,TARJETA DEBITO
+Kirchgasse 6,,178,29/04/2017,05/05/2017,28/04/2017,Danel,Scarlatina),09/05/2017,"$ 749.107,00",1,Tratamiento,"$ 219.624,00",3,Tratamiento,SEGURO
+"Rua Ors, 92",,139,30/04/2017,07/05/2017,28/04/2017,Kshitij,Scars,08/05/2017,"$ 347.804,00",1,Tratamiento,"$ 584.960,00",1,Tratamiento,CHEQUE
+"C/ Moralzarzal, 86",,119,01/05/2017,10/05/2017,30/04/2017,Premal,Schatzki Ring,14/05/2017,"$ 824.953,00",2,Tratamiento,"$ 429.701,00",3,Tratamiento,
+"184, chausse de Tournai",,193,02/05/2017,09/05/2017,01/05/2017,Zhongwei,Scheuermann's Kyphosis (Kyphosis),12/05/2017,"$ 966.042,00",3,Tratamiento,"$ 570.861,00",3,Tratamiento,
+kergatan 24,,153,03/05/2017,04/05/2017,01/05/2017,Parviz,Schistosoma guineensis (Schistosomiasis),05/05/2017,"$ 376.164,00",1,Tratamiento,"$ 46.589,00",2,Tratamiento,
+Berliner Platz 43,,168,04/05/2017,14/05/2017,02/05/2017,Vishv,Schistosoma haematobium (Schistosomiasis),19/05/2017,"$ 376.236,00",3,Tratamiento,"$ 566.074,00",1,Tratamiento,
+"54, rue Royale",,115,05/05/2017,12/05/2017,04/05/2017,Tuval,Schistosoma japonicum (Schistosomiasis),14/05/2017,"$ 255.123,00",1,Tratamiento,"$ 549.895,00",2,Tratamiento,EFECTIVO
+Via Monte Bianco 34,,140,06/05/2017,09/05/2017,04/05/2017,Kenroku,Tachycardia (Heart Rhythm Disorders),12/05/2017,"$ 317.412,00",3,Tratamiento,"$ 88.233,00",3,Tratamiento,TARJETA CRÉDITO
+Jardim das rosas n. 32,,170,07/05/2017,14/05/2017,06/05/2017,Somnath,"Tachycardia, Paroxysmal Atrial (Paroxysmal Supraventricular Tachycardia (PSVT))",15/05/2017,"$ 766.565,00",3,Tratamiento,"$ 184.519,00",3,Tratamiento,TARJETA DEBITO
+"Rambla de Catalua, 23",,153,08/05/2017,10/05/2017,07/05/2017,Xinglin,"Tachycardia, Paroxysmal Supraventricular (Paroxysmal Supraventricular Tachycardia (PSVT))",13/05/2017,"$ 230.187,00",3,Tratamiento,"$ 34.939,00",3,Tratamiento,SEGURO
+"C/ Romero, 33",,177,09/05/2017,14/05/2017,07/05/2017,Jungsoon,Tailbone Pain (Coccydynia),18/05/2017,"$ 973.681,00",2,Tratamiento,"$ 140.167,00",1,Tratamiento,CHEQUE
+"Av. Brasil, 442",,101,10/05/2017,17/05/2017,09/05/2017,Alejandro,Tailor's Bunion (Bunions),20/05/2017,"$ 556.224,00",3,Tratamiento,"$ 268.348,00",1,Tratamiento,
+2732 Baker Blvd.,,118,11/05/2017,21/05/2017,10/05/2017,Breannda,Takayasu Arteritis (Takayasu Disease),26/05/2017,"$ 789.826,00",1,Tratamiento,"$ 54.824,00",3,Tratamiento,
+5 Ave. Los Palos Grandes,,120,12/05/2017,19/05/2017,10/05/2017,Tse,Takayasu Disease,22/05/2017,"$ 797.003,00",3,Tratamiento,"$ 343.220,00",1,Tratamiento,
+"Rua do Pao, 67",,156,13/05/2017,19/05/2017,11/05/2017,Anoosh,Taking Dental Medications,21/05/2017,"$ 896.987,00",3,Tratamiento,"$ 141.859,00",1,Tratamiento,
+Carrera 22 con Ave. Carlos Soublette #8-35,,174,14/05/2017,15/05/2017,13/05/2017,Gino,Tarry Stools (Stool Color Changes),16/05/2017,"$ 645.401,00",1,Tratamiento,"$ 187.645,00",1,Tratamiento,
+City Center Plaza 516 Main St.,,156,15/05/2017,19/05/2017,14/05/2017,Udi,Abdominal Aortic Aneurysm,20/05/2017,"$ 732.868,00",3,Tratamiento,"$ 176.937,00",3,Tratamiento,
+8 Johnstown Road,,397,16/05/2017,26/05/2017,14/05/2017,Satosi,Abdominal Cramps (Heat Cramps),27/05/2017,"$ 707.681,00",1,Tratamiento,"$ 292.454,00",2,Tratamiento,EFECTIVO
+Garden House Crowther Way,,314,17/05/2017,18/05/2017,15/05/2017,Kwee,Abdominal Hernia (Hernia Overview),21/05/2017,"$ 110.331,00",3,Tratamiento,"$ 320.878,00",1,Tratamiento,TARJETA CRÉDITO
+Maubelstr. 90,,385,18/05/2017,24/05/2017,16/05/2017,Claudi,"Bacterial Vaginosis (Causes, Symptoms, Treatment)",26/05/2017,"$ 158.256,00",3,Tratamiento,"$ 354.925,00",3,Tratamiento,TARJETA DEBITO
+"67, avenue de l'Europe",,356,19/05/2017,26/05/2017,18/05/2017,Charlene,Bad Breath,31/05/2017,"$ 81.944,00",2,Tratamiento,"$ 511.089,00",3,Tratamiento,SEGURO
+1 rue Alsace-Lorraine,,317,20/05/2017,28/05/2017,18/05/2017,Margareta,Bad Cholesterol Test (Cholesterol Test),31/05/2017,"$ 881.690,00",2,Tratamiento,"$ 59.643,00",2,Tratamiento,CHEQUE
+1900 Oak St.,,305,21/05/2017,29/05/2017,20/05/2017,Reuven,Baker Cyst,01/06/2017,"$ 602.980,00",2,Tratamiento,"$ 583.011,00",2,Tratamiento,
+12 Orchestra Terrace,,363,22/05/2017,26/05/2017,21/05/2017,Hisao,"Farting (Intestinal Gas (Belching, Bloating, Flatulence))",27/05/2017,"$ 268.138,00",1,Tratamiento,"$ 124.520,00",3,Tratamiento,
+Magazinweg 7,,346,23/05/2017,02/06/2017,22/05/2017,Hironoby,Fast Heart Beat (Palpitations Overview),07/06/2017,"$ 379.874,00",3,Tratamiento,"$ 61.608,00",2,Tratamiento,
+87 Polk St. Suite 5,,396,24/05/2017,31/05/2017,23/05/2017,Shir,Fatigue,04/06/2017,"$ 153.311,00",1,Tratamiento,"$ 452.630,00",2,Tratamiento,
+Carrera 52 con Ave. Bolvar #65-98 Llano Largo,,376,25/05/2017,03/06/2017,23/05/2017,Mokhtar,Fatigue From Cancer (Cancer Fatigue,07/06/2017,"$ 863.400,00",3,Tratamiento,"$ 541.120,00",1,Tratamiento,EFECTIVO
+Ave. 5 de Mayo Porlamar,,353,26/05/2017,27/05/2017,25/05/2017,Gao,Lambliasis (Giardia Lamblia),31/05/2017,"$ 860.995,00",2,Tratamiento,"$ 68.985,00",3,Tratamiento,TARJETA CRÉDITO
+89 Chiaroscuro Rd.,,342,27/05/2017,06/06/2017,25/05/2017,Erez,Lambliosis (Giardia Lamblia),07/06/2017,"$ 149.290,00",3,Tratamiento,"$ 79.515,00",1,Tratamiento,TARJETA DEBITO
+Via Ludovico il Moro 22,,382,28/05/2017,29/05/2017,27/05/2017,Mona,Landau-Kleffner Syndrome,31/05/2017,"$ 267.026,00",1,Tratamiento,"$ 596.734,00",1,Tratamiento,SEGURO
+Rue Joseph-Bens 532,,346,29/05/2017,30/05/2017,28/05/2017,Danel,Lap Band Surgery (Gastric Banding),03/06/2017,"$ 834.540,00",1,Tratamiento,"$ 335.679,00",1,Tratamiento,CHEQUE
+43 rue St. Laurent,,349,30/05/2017,02/06/2017,29/05/2017,Kshitij,Laparoscopic Liver Biopsy (Liver Biopsy),03/06/2017,"$ 153.439,00",3,Tratamiento,"$ 71.023,00",1,Tratamiento,
+Heerstr. 22,,381,31/05/2017,08/06/2017,29/05/2017,Premal,Omega-3 Fatty Acids,10/06/2017,"$ 236.628,00",3,Tratamiento,"$ 443.391,00",1,Tratamiento,
+South House 300 Queensbridge,,383,01/06/2017,11/06/2017,31/05/2017,Zhongwei,Onchocerciasis,14/06/2017,"$ 871.864,00",3,Tratamiento,"$ 479.401,00",2,Tratamiento,EFECTIVO
+Ing. Gustavo Moncada 8585 Piso 20-A,,339,02/06/2017,07/06/2017,31/05/2017,Parviz,Onychocryptosis (Ingrown Toenail),09/06/2017,"$ 680.413,00",3,Tratamiento,"$ 132.635,00",1,Tratamiento,TARJETA CRÉDITO
+2743 Bering St.,,326,03/06/2017,09/06/2017,01/06/2017,Vishv,Scarlatina),14/06/2017,"$ 343.354,00",3,Tratamiento,"$ 352.489,00",3,Tratamiento,TARJETA DEBITO
+Mehrheimerstr. 369,,391,04/06/2017,12/06/2017,02/06/2017,Tuval,Scars,17/06/2017,"$ 57.805,00",3,Tratamiento,"$ 373.220,00",1,Tratamiento,SEGURO
+"265, boulevard Charonne",,377,05/06/2017,13/06/2017,04/06/2017,Kenroku,Schatzki Ring,16/06/2017,"$ 308.184,00",3,Tratamiento,"$ 597.900,00",3,Tratamiento,CHEQUE
+Calle Dr. Jorge Cash 321,,323,06/06/2017,13/06/2017,05/06/2017,Somnath,Scheuermann's Kyphosis (Kyphosis),15/06/2017,"$ 453.174,00",2,Tratamiento,"$ 378.332,00",3,Tratamiento,
