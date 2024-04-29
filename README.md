@@ -26,6 +26,9 @@ La estructura de la base de datos se compone de varias tablas, cada una diseñad
 ### Inserción de Datos
 
 Para facilitar la inserción de datos en la base de datos, se generaron 5 archivos CSV diferentes, cada uno con información específica sobre pacientes, empleados, formas de pago, direcciones y detalles de las cuentas de los pacientes. Utilizando Python y las librerías pandas y sqlalchemy, fue posible insertar eficientemente los datos en cada tabla de la base de datos. Puedes encontrar la evidencia de la creación en el archivo `insercion-datos-correcto.ipynb`.
+### Consultas
+
+Para la consultas de nuestra base de datos, todas se realizaron mediante el uso de MySQL Shell, utilizando comandos expuestos y vistios en clase. Puedes encontrar la evidencia de la creación en el archivo `Querys.txt`.
 
 ### Exportación de la Datos
 
