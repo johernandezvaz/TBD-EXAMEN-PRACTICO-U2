@@ -1,0 +1,454 @@
+1.-
+ MySQL  localhost:33060+ ssl  hospital  SQL > SELECT p.nombre, p.apellido_pat, d.calle, d.codigo_postal, d.ciudad, d.pais
+                                           -> FROM pacientes p
+                                           -> JOIN direcciones_pacientes dp ON p.paciente_id = dp.paciente_id
+                                           -> JOIN direcciones d ON dp.direccion_id = d.direccion_id
+                                           -> WHERE d.pais = 'México';
++-----------+--------------+------------------------------+---------------+------------+--------+
+| nombre    | apellido_pat | calle                        | codigo_postal | ciudad     | pais   |
++-----------+--------------+------------------------------+---------------+------------+--------+
+| Bezalel   | Simmel       | Avda. de la Constitucin 2222 | 71760         | Mxico D.F. | Mexico |
+| Berhard   | McFarlin     | Calle Dr. Jorge Cash 321     | 19460         | Mxico D.F. | Mexico |
+| Eberhardt | Terkki       | Sierras de Granada 9993      | 45792         | Mxico D.F. | Mexico |
++-----------+--------------+------------------------------+---------------+------------+--------+
+
+
+
+
+2.-
+ MySQL  localhost:33060+ ssl  hospital  SQL > SELECT e.nombre, e.apellido_paterno, d.calle, d.codigo_postal, d.ciudad, d.pais FROM empleados e JOIN direcciones_empleados de ON e.empleado_id = de.empleado_id JOIN direcciones d ON de.direccion_id = d.direccion_id WHERE d.pais = 'Brazil';
++----------+------------------+--------------------------+---------------+----------------+--------+
+| nombre   | apellido_paterno | calle                    | codigo_postal | ciudad         | pais   |
++----------+------------------+--------------------------+---------------+----------------+--------+
+| Anoosh   | Peyn             | Alameda dos Canrios, 891 | 36965         | Sao Paulo      | Brazil |
+| Claudi   | Stavenow         | Av. Copacabana, 267      | 34941         | Rio de Janeiro | Brazil |
+| Zhongwei | Rosen            | Av. Ins de Castro, 414   | 14942         | Sao Paulo      | Brazil |
+| Tse      | Herber           | Rua da Panificadora, 12  | 37964         | Rio de Janeiro | Brazil |
++----------+------------------+--------------------------+---------------+----------------+--------+
+
+
+
+
+3.-
+ MySQL  localhost:33060+ ssl  hospital  SQL > SELECT p.nombre, p.apellido_pat, c.numero_cuarto AS cuarto FROM pacientes p JOIN cuartos c ON p.paciente_id = c.paciente_id WHERE c.numero_cuarto BETWEEN 99 AND 200   AND c.inicio_estadia <= NOW();
++------------+--------------+--------+
+| nombre     | apellido_pat | cuarto |
++------------+--------------+--------+
+| Georgi     | Facello      |    121 |
+| Bezalel    | Simmel       |    190 |
+| Parto      | Bamford      |    108 |
+| Chirstian  | Koblick      |    179 |
+| Kyoichi    | Maliniak     |    158 |
+| Anneke     | Preusig      |    183 |
+| Tzvetan    | Zielinski    |    142 |
+| Saniya     | Kalloufi     |    108 |
+| Sumant     | Peac         |    100 |
+| Duangkaew  | Piveteau     |    109 |
+| Mary       | Sluis        |    116 |
+| Patricio   | Bridgland    |    182 |
+| Eberhardt  | Terkki       |    180 |
+| Berni      | Genin        |    188 |
+| Guoxiang   | Nooteboom    |    173 |
+| Kazuhito   | Cappelletti  |    176 |
+| Cristinel  | Bouloucos    |    122 |
+| Kazuhide   | Peha         |    155 |
+| Lillian    | Haddadi      |    181 |
+| Mayuko     | Warwick      |    178 |
+| Ramzi      | Erde         |    139 |
+| Shahaf     | Famili       |    119 |
+| Bojan      | Montemayor   |    193 |
+| Suzette    | Pettey       |    153 |
+| Prasadram  | Heyers       |    168 |
+| Yongqiao   | Berztiss     |    115 |
+| Divier     | Reistad      |    140 |
+| Domenick   | Tempesti     |    170 |
+| Otmar      | Herbst       |    153 |
+| Elvis      | Demeyer      |    177 |
+| Karsten    | Joslin       |    101 |
+| Jeong      | Reistad      |    118 |
+| Arif       | Merlo        |    120 |
+| Bader      | Swan         |    156 |
+| Alain      | Chappelet    |    174 |
+| Adamantios | Portugali    |    156 |
++------------+--------------+--------+
+
+
+
+
+4.-
+ MySQL  localhost:33060+ ssl  hospital  SQL > SELECT p.nombre, p.apellido_pat, p.genero FROM pacientes p JOIN registro_pacientes rp ON p.paciente_id = rp.paciente_id WHERE rp.condición_medica LIKE '%fatigue%';
++-----------+--------------+-----------+
+| nombre    | apellido_pat | genero    |
++-----------+--------------+-----------+
+| Duangkaew | Piveteau     | femenino  |
+| Mary      | Sluis        | femenino  |
+| Moss      | Shanbhogue   | masculino |
+| Lucien    | Rosenbaum    | masculino |
++-----------+--------------+-----------+
+
+
+
+
+5.-
+ MySQL  localhost:33060+ ssl  hospital  SQL > SELECT e.nombre AS nombre_empleado, e.apellido_paterno AS apellido_empleado,
+                                           ->        p.nombre AS nombre_paciente, p.apellido_pat AS apellido_paciente, rp.fecha_admision
+                                           -> FROM empleados e
+                                           -> LEFT JOIN registro_pacientes rp ON e.empleado_id = rp.registro_por_empleado_id
+                                           -> LEFT JOIN pacientes p ON rp.paciente_id = p.paciente_id;
++-----------------+-------------------+-----------------+-------------------+----------------+
+| nombre_empleado | apellido_empleado | nombre_paciente | apellido_paciente | fecha_admision |
++-----------------+-------------------+-----------------+-------------------+----------------+
+| Alejandro       | McAlpine          | Georgi          | Facello           | 2017-04-08     |
+| Alejandro       | McAlpine          | Karsten         | Joslin            | 2017-05-09     |
+| Breannda        | Billingsley       | Bezalel         | Simmel            | 2017-04-09     |
+| Breannda        | Billingsley       | Jeong           | Reistad           | 2017-05-10     |
+| Tse             | Herber            | Parto           | Bamford           | 2017-04-10     |
+| Tse             | Herber            | Arif            | Merlo             | 2017-05-10     |
+| Anoosh          | Peyn              | Chirstian       | Koblick           | 2017-04-12     |
+| Anoosh          | Peyn              | Bader           | Swan              | 2017-05-11     |
+| Gino            | Leonhardt         | Kyoichi         | Maliniak          | 2017-04-12     |
+| Gino            | Leonhardt         | Alain           | Chappelet         | 2017-05-13     |
+| Udi             | Jansch            | Anneke          | Preusig           | 2017-04-14     |
+| Udi             | Jansch            | Adamantios      | Portugali         | 2017-05-14     |
+| Satosi          | Awdeh             | Tzvetan         | Zielinski         | 2017-04-15     |
+| Satosi          | Awdeh             | Pradeep         | Makrucki          | 2017-05-14     |
+| Kwee            | Schusler          | Saniya          | Kalloufi          | 2017-04-15     |
+| Kwee            | Schusler          | Huan            | Lortz             | 2017-05-15     |
+| Claudi          | Stavenow          | Sumant          | Peac              | 2017-04-16     |
+| Claudi          | Stavenow          | Alejandro       | Brender           | 2017-05-16     |
+| Charlene        | Brattka           | Duangkaew       | Piveteau          | 2017-04-17     |
+| Charlene        | Brattka           | Weiyi           | Meriste           | 2017-05-18     |
+| Margareta       | Bierman           | Mary            | Sluis             | 2017-04-18     |
+| Margareta       | Bierman           | Uri             | Lenart            | 2017-05-18     |
+| Reuven          | Garigliano        | Patricio        | Bridgland         | 2017-04-19     |
+| Reuven          | Garigliano        | Magy            | Stamatiou         | 2017-05-20     |
+| Hisao           | Lipner            | Eberhardt       | Terkki            | 2017-04-20     |
+| Hisao           | Lipner            | Yishay          | Tzvieli           | 2017-05-21     |
+| Hironoby        | Sidou             | Berni           | Genin             | 2017-04-22     |
+| Hironoby        | Sidou             | Mingsen         | Casley            | 2017-05-22     |
+| Shir            | McClurg           | Guoxiang        | Nooteboom         | 2017-04-22     |
+| Shir            | McClurg           | Moss            | Shanbhogue        | 2017-05-23     |
+| Mokhtar         | Bernatsky         | Kazuhito        | Cappelletti       | 2017-04-24     |
+| Mokhtar         | Bernatsky         | Lucien          | Rosenbaum         | 2017-05-23     |
+| Gao             | Dolinsky          | Cristinel       | Bouloucos         | 2017-04-24     |
+| Gao             | Dolinsky          | Zvonko          | Nyanchama         | 2017-05-25     |
+| Erez            | Ritzmann          | Kazuhide        | Peha              | 2017-04-25     |
+| Erez            | Ritzmann          | Florian         | Syrotiuk          | 2017-05-25     |
+| Mona            | Azuma             | Lillian         | Haddadi           | 2017-04-27     |
+| Mona            | Azuma             | Basil           | Tramer            | 2017-05-27     |
+| Danel           | Mondadori         | Mayuko          | Warwick           | 2017-04-28     |
+| Danel           | Mondadori         | Yinghua         | Dredge            | 2017-05-28     |
+| Kshitij         | Gils              | Ramzi           | Erde              | 2017-04-28     |
+| Kshitij         | Gils              | Hidefumi        | Caine             | 2017-05-29     |
+| Premal          | Baek              | Shahaf          | Famili            | 2017-04-30     |
+| Premal          | Baek              | Heping          | Nitsch            | 2017-05-29     |
+| Zhongwei        | Rosen             | Bojan           | Montemayor        | 2017-05-01     |
+| Zhongwei        | Rosen             | Sanjiv          | Zschoche          | 2017-05-31     |
+| Parviz          | Lortz             | Suzette         | Pettey            | 2017-05-01     |
+| Parviz          | Lortz             | Mayumi          | Schueller         | 2017-05-31     |
+| Vishv           | Zockler           | Prasadram       | Heyers            | 2017-05-02     |
+| Vishv           | Zockler           | Georgy          | Dredge            | 2017-06-01     |
+| Tuval           | Kalloufi          | Yongqiao        | Berztiss          | 2017-05-04     |
+| Tuval           | Kalloufi          | Brendon         | Bernini           | 2017-06-02     |
+| Kenroku         | Malabarba         | Divier          | Reistad           | 2017-05-04     |
+| Kenroku         | Malabarba         | Ebbe            | Callaway          | 2017-06-04     |
+| Somnath         | Foote             | Domenick        | Tempesti          | 2017-05-06     |
+| Somnath         | Foote             | Berhard         | McFarlin          | 2017-06-05     |
+| Xinglin         | Eugenio           | Otmar           | Herbst            | 2017-05-07     |
+| Jungsoon        | Syrzycki          | Elvis           | Demeyer           | 2017-05-07     |
+| Prueba          | ApellidoPrueba    | NULL            | NULL              | NULL           |
++-----------------+-------------------+-----------------+-------------------+----------------+
+
+
+
+
+6.- MySQL  localhost:33060+ ssl  hospital  SQL > SELECT
+                                           ->     p.nombre,
+                                           ->     p.apellido_pat,
+                                           ->     cp.fecha_emision,
+                                           ->     cpd.detalle,
+                                           ->     cpd.cantidad,
+                                           ->     cpd.costo_total,
+                                           ->     (cpd.cantidad * cpd.costo_total) AS Adeudo
+                                           -> FROM
+                                           ->     pacientes p
+                                           -> LEFT JOIN cuentas_pacientes cp ON p.paciente_id = cp.paciente_id
+                                           -> LEFT JOIN cuentas_pacientes_detalles cpd ON cp.cuentas_pacientes_id = cpd.cuentas_pacientes_id
+                                           -> ORDER BY
+                                           ->     p.apellido_pat ASC;
++------------+--------------+---------------+-------------+----------+-------------+---------+
+| nombre     | apellido_pat | fecha_emision | detalle     | cantidad | costo_total | Adeudo  |
++------------+--------------+---------------+-------------+----------+-------------+---------+
+| Parto      | Bamford      | 2017-04-20    | Tratamiento |        4 |      803455 | 3213820 |
+| Brendon    | Bernini      | 2017-06-17    | Tratamiento |        4 |      431025 | 1724100 |
+| Yongqiao   | Berztiss     | 2017-05-14    | Tratamiento |        3 |      805018 | 2415054 |
+| Cristinel  | Bouloucos    | 2017-05-01    | Tratamiento |        4 |     1318496 | 5273984 |
+| Alejandro  | Brender      | 2017-05-26    | Tratamiento |        6 |      513181 | 3079086 |
+| Patricio   | Bridgland    | 2017-04-28    | Tratamiento |        5 |      666403 | 3332015 |
+| Hidefumi   | Caine        | 2017-06-03    | Tratamiento |        4 |      224462 |  897848 |
+| Ebbe       | Callaway     | 2017-06-16    | Tratamiento |        6 |      906084 | 5436504 |
+| Kazuhito   | Cappelletti  | 2017-05-02    | Tratamiento |        3 |      555734 | 1667202 |
+| Mingsen    | Casley       | 2017-06-07    | Tratamiento |        5 |      441482 | 2207410 |
+| Alain      | Chappelet    | 2017-05-16    | Tratamiento |        2 |      833046 | 1666092 |
+| Elvis      | Demeyer      | 2017-05-18    | Tratamiento |        3 |     1113848 | 3341544 |
+| Georgy     | Dredge       | 2017-06-14    | Tratamiento |        6 |      695843 | 4175058 |
+| Yinghua    | Dredge       | 2017-06-03    | Tratamiento |        2 |     1170219 | 2340438 |
+| Ramzi      | Erde         | 2017-05-08    | Tratamiento |        2 |      932764 | 1865528 |
+| Georgi     | Facello      | 2017-04-20    | Tratamiento |        6 |      437557 | 2625342 |
+| Shahaf     | Famili       | 2017-05-14    | Tratamiento |        5 |     1254654 | 6273270 |
+| Berni      | Genin        | 2017-04-26    | Tratamiento |        6 |      528996 | 3173976 |
+| Lillian    | Haddadi      | 2017-05-03    | Tratamiento |        3 |      584977 | 1754931 |
+| Otmar      | Herbst       | 2017-05-13    | Tratamiento |        6 |      265126 | 1590756 |
+| Prasadram  | Heyers       | 2017-05-19    | Tratamiento |        4 |      942310 | 3769240 |
+| Karsten    | Joslin       | 2017-05-20    | Tratamiento |        4 |      824572 | 3298288 |
+| Saniya     | Kalloufi     | 2017-04-27    | Tratamiento |        3 |     1299575 | 3898725 |
+| Chirstian  | Koblick      | 2017-04-22    | Tratamiento |        6 |      863833 | 5182998 |
+| Uri        | Lenart       | 2017-05-31    | Tratamiento |        4 |      941333 | 3765332 |
+| Huan       | Lortz        | 2017-05-21    | Tratamiento |        4 |      431209 | 1724836 |
+| Pradeep    | Makrucki     | 2017-05-27    | Tratamiento |        3 |     1000135 | 3000405 |
+| Kyoichi    | Maliniak     | 2017-04-21    | Tratamiento |        2 |      835504 | 1671008 |
+| Berhard    | McFarlin     | 2017-06-15    | Tratamiento |        5 |      831506 | 4157530 |
+| Weiyi      | Meriste      | 2017-05-31    | Tratamiento |        5 |      593033 | 2965165 |
+| Arif       | Merlo        | 2017-05-22    | Tratamiento |        4 |     1140223 | 4560892 |
+| Bojan      | Montemayor   | 2017-05-12    | Tratamiento |        6 |     1536903 | 9221418 |
+| Heping     | Nitsch       | 2017-06-10    | Tratamiento |        4 |      680019 | 2720076 |
+| Guoxiang   | Nooteboom    | 2017-05-05    | Tratamiento |        3 |      909453 | 2728359 |
+| Zvonko     | Nyanchama    | 2017-05-31    | Tratamiento |        5 |      929980 | 4649900 |
+| Sumant     | Peac         | 2017-04-28    | Tratamiento |        2 |     1144618 | 2289236 |
+| Kazuhide   | Peha         | 2017-05-12    | Tratamiento |        5 |      903422 | 4517110 |
+| Suzette    | Pettey       | 2017-05-05    | Tratamiento |        3 |      422753 | 1268259 |
+| Duangkaew  | Piveteau     | 2017-04-27    | Tratamiento |        2 |     1033289 | 2066578 |
+| Adamantios | Portugali    | 2017-05-20    | Tratamiento |        6 |      909805 | 5458830 |
+| Anneke     | Preusig      | 2017-04-18    | Tratamiento |        4 |      845256 | 3381024 |
+| Jeong      | Reistad      | 2017-05-26    | Tratamiento |        4 |      844650 | 3378600 |
+| Divier     | Reistad      | 2017-05-12    | Tratamiento |        6 |      405645 | 2433870 |
+| Lucien     | Rosenbaum    | 2017-06-07    | Tratamiento |        4 |     1404520 | 5618080 |
+| Mayumi     | Schueller    | 2017-06-09    | Tratamiento |        4 |      813048 | 3252192 |
+| Moss       | Shanbhogue   | 2017-06-04    | Tratamiento |        3 |      605941 | 1817823 |
+| Bezalel    | Simmel       | 2017-04-17    | Tratamiento |        5 |      420352 | 2101760 |
+| Mary       | Sluis        | 2017-04-28    | Tratamiento |        5 |      775124 | 3875620 |
+| Magy       | Stamatiou    | 2017-06-01    | Tratamiento |        4 |     1185991 | 4743964 |
+| Bader      | Swan         | 2017-05-21    | Tratamiento |        4 |     1038846 | 4155384 |
+| Florian    | Syrotiuk     | 2017-06-07    | Tratamiento |        4 |      228805 |  915220 |
+| Domenick   | Tempesti     | 2017-05-15    | Tratamiento |        6 |      951084 | 5706504 |
+| Eberhardt  | Terkki       | 2017-04-29    | Tratamiento |        4 |      527460 | 2109840 |
+| Basil      | Tramer       | 2017-05-31    | Tratamiento |        2 |      863760 | 1727520 |
+| Yishay     | Tzvieli      | 2017-05-27    | Tratamiento |        4 |      392658 | 1570632 |
+| Mayuko     | Warwick      | 2017-05-09    | Tratamiento |        4 |      968731 | 3874924 |
+| Tzvetan    | Zielinski    | 2017-04-24    | Tratamiento |        3 |      553474 | 1660422 |
+| Sanjiv     | Zschoche     | 2017-06-14    | Tratamiento |        5 |     1351265 | 6756325 |
++------------+--------------+---------------+-------------+----------+-------------+---------+
+
+
+
+
+7.- MySQL  localhost:33060+ ssl  hospital  SQL > SELECT
+                                           ->     p.nombre,
+                                           ->     p.apellido_pat,
+                                           ->     SUM(cpd.cantidad * cpd.costo_total) AS Total_adeudo
+                                           -> FROM
+                                           ->     pacientes p
+                                           -> LEFT JOIN cuentas_pacientes cp ON p.paciente_id = cp.paciente_id
+                                           -> LEFT JOIN cuentas_pacientes_detalles cpd ON cp.cuentas_pacientes_id = cpd.cuentas_pacientes_id
+                                           -> GROUP BY
+                                           ->     p.nombre,
+                                           ->     p.apellido_pat;
++------------+--------------+--------------+
+| nombre     | apellido_pat | Total_adeudo |
++------------+--------------+--------------+
+| Georgi     | Facello      |      2625342 |
+| Bezalel    | Simmel       |      2101760 |
+| Parto      | Bamford      |      3213820 |
+| Chirstian  | Koblick      |      5182998 |
+| Kyoichi    | Maliniak     |      1671008 |
+| Anneke     | Preusig      |      3381024 |
+| Tzvetan    | Zielinski    |      1660422 |
+| Saniya     | Kalloufi     |      3898725 |
+| Sumant     | Peac         |      2289236 |
+| Duangkaew  | Piveteau     |      2066578 |
+| Mary       | Sluis        |      3875620 |
+| Patricio   | Bridgland    |      3332015 |
+| Eberhardt  | Terkki       |      2109840 |
+| Berni      | Genin        |      3173976 |
+| Guoxiang   | Nooteboom    |      2728359 |
+| Kazuhito   | Cappelletti  |      1667202 |
+| Cristinel  | Bouloucos    |      5273984 |
+| Kazuhide   | Peha         |      4517110 |
+| Lillian    | Haddadi      |      1754931 |
+| Mayuko     | Warwick      |      3874924 |
+| Ramzi      | Erde         |      1865528 |
+| Shahaf     | Famili       |      6273270 |
+| Bojan      | Montemayor   |      9221418 |
+| Suzette    | Pettey       |      1268259 |
+| Prasadram  | Heyers       |      3769240 |
+| Yongqiao   | Berztiss     |      2415054 |
+| Divier     | Reistad      |      2433870 |
+| Domenick   | Tempesti     |      5706504 |
+| Otmar      | Herbst       |      1590756 |
+| Elvis      | Demeyer      |      3341544 |
+| Karsten    | Joslin       |      3298288 |
+| Jeong      | Reistad      |      3378600 |
+| Arif       | Merlo        |      4560892 |
+| Bader      | Swan         |      4155384 |
+| Alain      | Chappelet    |      1666092 |
+| Adamantios | Portugali    |      5458830 |
+| Pradeep    | Makrucki     |      3000405 |
+| Huan       | Lortz        |      1724836 |
+| Alejandro  | Brender      |      3079086 |
+| Weiyi      | Meriste      |      2965165 |
+| Uri        | Lenart       |      3765332 |
+| Magy       | Stamatiou    |      4743964 |
+| Yishay     | Tzvieli      |      1570632 |
+| Mingsen    | Casley       |      2207410 |
+| Moss       | Shanbhogue   |      1817823 |
+| Lucien     | Rosenbaum    |      5618080 |
+| Zvonko     | Nyanchama    |      4649900 |
+| Florian    | Syrotiuk     |       915220 |
+| Basil      | Tramer       |      1727520 |
+| Yinghua    | Dredge       |      2340438 |
+| Hidefumi   | Caine        |       897848 |
+| Heping     | Nitsch       |      2720076 |
+| Sanjiv     | Zschoche     |      6756325 |
+| Mayumi     | Schueller    |      3252192 |
+| Georgy     | Dredge       |      4175058 |
+| Brendon    | Bernini      |      1724100 |
+| Ebbe       | Callaway     |      5436504 |
+| Berhard    | McFarlin     |      4157530 |
++------------+--------------+--------------+
+
+
+
+
+8.- MySQL  localhost:33060+ ssl  hospital  SQL > SELECT
+                                           ->     p.nombre,
+                                           ->     p.apellido_pat,
+                                           ->     COALESCE(SUM(cpd.cantidad * cpd.costo_total), 0) AS Total_adeudo
+                                           -> FROM
+                                           ->     pacientes p
+                                           -> LEFT JOIN
+                                           ->     cuentas_pacientes cp ON p.paciente_id = cp.paciente_id
+                                           -> LEFT JOIN
+                                           ->     cuentas_pacientes_detalles cpd ON cp.cuentas_pacientes_id = cpd.cuentas_pacientes_id
+                                           -> LEFT JOIN
+                                           ->     formas_pago_pacientes fp ON p.paciente_id = fp.paciente_id
+                                           -> WHERE
+                                           ->     fp.forma_pago_id IS NULL
+                                           -> GROUP BY
+                                           ->     p.paciente_id;
++------------+--------------+--------------+
+| nombre     | apellido_pat | Total_adeudo |
++------------+--------------+--------------+
+| Georgi     | Facello      |      2625342 |
+| Bezalel    | Simmel       |      2101760 |
+| Eberhardt  | Terkki       |      2109840 |
+| Berni      | Genin        |      3173976 |
+| Guoxiang   | Nooteboom    |      2728359 |
+| Kazuhito   | Cappelletti  |      1667202 |
+| Shahaf     | Famili       |      6273270 |
+| Bojan      | Montemayor   |      9221418 |
+| Suzette    | Pettey       |      1268259 |
+| Prasadram  | Heyers       |      3769240 |
+| Karsten    | Joslin       |      3298288 |
+| Jeong      | Reistad      |      3378600 |
+| Arif       | Merlo        |      4560892 |
+| Bader      | Swan         |      4155384 |
+| Alain      | Chappelet    |      1666092 |
+| Adamantios | Portugali    |      5458830 |
+| Magy       | Stamatiou    |      4743964 |
+| Yishay     | Tzvieli      |      1570632 |
+| Mingsen    | Casley       |      2207410 |
+| Moss       | Shanbhogue   |      1817823 |
+| Hidefumi   | Caine        |       897848 |
+| Heping     | Nitsch       |      2720076 |
+| Berhard    | McFarlin     |      4157530 |
++------------+--------------+--------------+
+
+
+
+
+9.- MySQL  localhost:33060+ ssl  hospital  SQL > SELECT
+                                           ->     p.nombre,
+                                           ->     p.apellido_pat,
+                                           ->     COALESCE(SUM(cpd.cantidad * cpd.costo_total), 0) AS Total_adeudo
+                                           -> FROM
+                                           ->     pacientes p
+                                           -> LEFT JOIN
+                                           ->     cuentas_pacientes cp ON p.paciente_id = cp.paciente_id
+                                           -> LEFT JOIN
+                                           ->     cuentas_pacientes_detalles cpd ON cp.cuentas_pacientes_id = cpd.cuentas_pacientes_id
+                                           -> LEFT JOIN
+                                           ->     formas_pago_pacientes fp ON p.paciente_id = fp.paciente_id
+                                           -> WHERE
+                                           ->     fp.forma_pago_id = 1
+                                           -> GROUP BY
+                                           ->     p.paciente_id;
++-----------+--------------+--------------+
+| nombre    | apellido_pat | Total_adeudo |
++-----------+--------------+--------------+
+| Parto     | Bamford      |      3213820 |
+| Saniya    | Kalloufi     |      3898725 |
+| Cristinel | Bouloucos    |      5273984 |
+| Yongqiao  | Berztiss     |      2415054 |
+| Pradeep   | Makrucki     |      3000405 |
+| Lucien    | Rosenbaum    |      5618080 |
+| Sanjiv    | Zschoche     |      6756325 |
++-----------+--------------+--------------+
+
+
+
+
+10.- MySQL  localhost:33060+ ssl  hospital  SQL > SELECT
+                                           ->     p.nombre,
+                                           ->     p.apellido_pat,
+                                           ->     COALESCE(SUM(cpd.cantidad * cpd.costo_total), 0) AS Total_adeudo
+                                           -> FROM
+                                           ->     pacientes p
+                                           -> LEFT JOIN
+                                           ->     cuentas_pacientes cp ON p.paciente_id = cp.paciente_id
+                                           -> LEFT JOIN
+                                           ->     cuentas_pacientes_detalles cpd ON cp.cuentas_pacientes_id = cpd.cuentas_pacientes_id
+                                           -> LEFT JOIN
+                                           ->     formas_pago_pacientes fp ON p.paciente_id = fp.paciente_id
+                                           -> WHERE
+                                           ->     fp.forma_pago_id IS NOT NULL
+                                           -> GROUP BY
+                                           ->     p.paciente_id;
++-----------+--------------+--------------+
+| nombre    | apellido_pat | Total_adeudo |
++-----------+--------------+--------------+
+| Parto     | Bamford      |      3213820 |
+| Chirstian | Koblick      |      5182998 |
+| Kyoichi   | Maliniak     |      1671008 |
+| Anneke    | Preusig      |      3381024 |
+| Tzvetan   | Zielinski    |      1660422 |
+| Saniya    | Kalloufi     |      3898725 |
+| Sumant    | Peac         |      2289236 |
+| Duangkaew | Piveteau     |      2066578 |
+| Mary      | Sluis        |      3875620 |
+| Patricio  | Bridgland    |      3332015 |
+| Cristinel | Bouloucos    |      5273984 |
+| Kazuhide  | Peha         |      4517110 |
+| Lillian   | Haddadi      |      1754931 |
+| Mayuko    | Warwick      |      3874924 |
+| Ramzi     | Erde         |      1865528 |
+| Yongqiao  | Berztiss     |      2415054 |
+| Divier    | Reistad      |      2433870 |
+| Domenick  | Tempesti     |      5706504 |
+| Otmar     | Herbst       |      1590756 |
+| Elvis     | Demeyer      |      3341544 |
+| Pradeep   | Makrucki     |      3000405 |
+| Huan      | Lortz        |      1724836 |
+| Alejandro | Brender      |      3079086 |
+| Weiyi     | Meriste      |      2965165 |
+| Uri       | Lenart       |      3765332 |
+| Lucien    | Rosenbaum    |      5618080 |
+| Zvonko    | Nyanchama    |      4649900 |
+| Florian   | Syrotiuk     |       915220 |
+| Basil     | Tramer       |      1727520 |
+| Yinghua   | Dredge       |      2340438 |
+| Sanjiv    | Zschoche     |      6756325 |
+| Mayumi    | Schueller    |      3252192 |
+| Georgy    | Dredge       |      4175058 |
+| Brendon   | Bernini      |      1724100 |
+| Ebbe      | Callaway     |      5436504 |
++-----------+--------------+--------------+
