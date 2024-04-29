@@ -1,4 +1,9 @@
-# TBD-EXAMEN-PRACTICO-U2
+# Examen Práctico de Taller de Bases de Datos Unidad 2
+### Realizado por:
+### Felix Ulises Mancinas Zamora 22550029
+### Sebastian Roesner Gómez 22550007
+### Juan Carlos Gutierrez Mendoza 21550356
+### José de Jesús Hernández Vázquez
 
 ## Creación de la Base de Datos y Tablas
 
